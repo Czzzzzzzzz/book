@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="https://static.zongheng.com/favicon.ico"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>[[${title}]]小说_小说推荐_好看的完本免费小说推荐</title>
+    <meta name="keywords" content="书库，热门小说书库，连载小说书库，全本小说书库，书库更新列表，纵横中文网书库。"/>
+    <meta name="description" content="纵横中文网小说书库，提供最新小说在线阅读，最新小说TXT下载，经典完本小说，包括奇幻小说，玄幻小说，言情小说，都市小说等各类小说尽在纵横中文网小说书库。"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/basic.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/reader.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/chapterlist.min.css}"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/css/layui.css}"/>
+
+    <script type="text/javascript" th:src="@{/layui/layui.js}"></script>
+
+    <script type="text/javascript" th:src="@{/js/jquery-1.9.1.js}"></script>
+</head>
+<body>
+<div class="wrap">
+    <div class="head">
+        <div class="head-top clearfix">
+            <div class="logo imgbox fl">
+                <a th:href="@{/index}"><img th:src="@{/picture/logo.png}" alt="logo"  src=""></a>
+            </div>
+            <form id="commSearch" name="searchForm" method="get" th:action="@{/search}" target="_blank">
+                <div class="search-box fl" data-hook="searchSuggest">
+                    <label>
+                        <input class="search-text fl" name="fictionName" type="text"
+                               placeholder="请输入书名"/>
+                    </label>
+                    <input type="submit" class="search-btn fr"/>
+                </div>
+            </form>
+            <div class="right-wrap-login ud_userTox">
+                <div class="unlogin ud_unlogin clearfix">
+                    <div class="login fl"><a class="user_login" href="">登录</a></div>
+                    <div class="regist fl"><a class="user_register" href="">注册</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="h10-blank"></div>
+    <!-- 1.	书库头部广告位 -->
+    <div class="h20-blank"></div>
+    <div class="h15-blank"></div>
+    <!-- 目录页开始 -->
+    <div class="container">
+        <div  class="book-meta">
+            <h1 th:text="${fiction.fictionName}"></h1>
+            <p>
+                <span><i>作者：</i><a href="" th:text="${fiction.author}" target="_blank"></a></span>
+                <span><i th:text="${fiction.createDate}">更新时间：</i></span>
+                <span><i th:text="${fiction.newest}">最新章节：</i></span>
+            </p>
+        </div>
+        <div>
+            <div class="section_title clearfix">
+            </div>
+            <div class="volume ">
+                <em class="v-line"></em>小说章节<em class="count" th:text="'共'+${size}+'章'">共92章<i>·</i>共<cite th:text="${fiction.number}">185383</cite>字</em>
+            </div>
+            <div class="volume-list">
+                <div>
+                    <ul  class="chapter-list clearfix">
+
+                        <li th:each="item : ${list}" class=" col-4" style ="line-height:35px; font-size:25px;">
+                            <a  th:text="${item.chapterTitle}" th:href="'/fiction/chapter/read/'+${item.fictionId}+'/'+${item.sort}" target="_blank" th:alt-title="${fiction.fictionName}+'更新时间：'+${#dates.format(item.createDate, 'yyyy-MM-dd HH:mm')}"></a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+</div>
+    <div class="footer">
+        <div class="copyright">
+            <p >提供<a
+                    href="" target="_blank">玄幻小说</a>,<a href=""
+                                                        target="_blank">都市小说</a>,<a
+                    href="">言情小说</a>等<a
+                    href="" target="_blank">免费小说</a>阅读。作者发布小说作品时，请遵守国家互联网信息管理办法规定。
+            </p>
+            <p>本站所收录小说作品、社区话题、书库评论均属其个人行为，不代表本站立场。</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
